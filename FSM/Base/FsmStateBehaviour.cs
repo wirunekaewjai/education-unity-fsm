@@ -148,7 +148,7 @@ namespace Devdayo
             Subscribe<BecameInvisible>(Event.OnBecameInvisible, OnBecameInvisible);
             Subscribe<PreRender>(Event.OnPreRender, OnPreRender);
             Subscribe<RenderObject>(Event.OnRenderObject, OnRenderObject);
-            Subscribe<RenderImage>(Event.OnRenderImage, OnRenderImage);
+            Subscribe<RenderImage, RenderTexture, RenderTexture>(Event.OnRenderImage, OnRenderImage);
             Subscribe<PostRender>(Event.OnPostRender, OnPostRender);
         }
 
@@ -201,7 +201,7 @@ namespace Devdayo
             Unsubscribe<BecameInvisible>(Event.OnBecameInvisible, OnBecameInvisible);
             Unsubscribe<PreRender>(Event.OnPreRender, OnPreRender);
             Unsubscribe<RenderObject>(Event.OnRenderObject, OnRenderObject);
-            Unsubscribe<RenderImage>(Event.OnRenderImage, OnRenderImage);
+            Unsubscribe<RenderImage, RenderTexture, RenderTexture>(Event.OnRenderImage, OnRenderImage);
             Unsubscribe<PostRender>(Event.OnPostRender, OnPostRender);
         }
 
@@ -213,7 +213,6 @@ namespace Devdayo
             GameObject obs = GetObservable(e);
             FsmEvent.Subscribe<T>(obs, a);
         }
-
         protected void Subscribe<T, A>(Event e, Action<A> a) where T : FsmEvent<A>
         {
             if (!events.Contains(e))
@@ -221,6 +220,14 @@ namespace Devdayo
 
             GameObject obs = GetObservable(e);
             FsmEvent<A>.Subscribe<T>(obs, a);
+        }
+        protected void Subscribe<T, A, B>(Event e, Action<A, B> a) where T : FsmEvent<A, B>
+        {
+            if (!events.Contains(e))
+                return;
+
+            GameObject obs = GetObservable(e);
+            FsmEvent<A, B>.Subscribe<T>(obs, a);
         }
 
         protected void Unsubscribe<T>(Event e, Action a) where T : FsmEvent
@@ -231,7 +238,6 @@ namespace Devdayo
             GameObject obs = GetObservable(e);
             FsmEvent.Unsubscribe<T>(obs, a);
         }
-
         protected void Unsubscribe<T, A>(Event e, Action<A> a) where T : FsmEvent<A>
         {
             if (!events.Contains(e))
@@ -239,6 +245,14 @@ namespace Devdayo
 
             GameObject obs = GetObservable(e);
             FsmEvent<A>.Unsubscribe<T>(obs, a);
+        }
+        protected void Unsubscribe<T, A, B>(Event e, Action<A, B> a) where T : FsmEvent<A, B>
+        {
+            if (!events.Contains(e))
+                return;
+
+            GameObject obs = GetObservable(e);
+            FsmEvent<A, B>.Unsubscribe<T>(obs, a);
         }
 
         // Virtual Sections.
@@ -292,7 +306,7 @@ namespace Devdayo
         public virtual void OnBecameInvisible() { }
         public virtual void OnPreRender() { }
         public virtual void OnRenderObject() { }
-        public virtual void OnRenderImage() { }
+        public virtual void OnRenderImage(RenderTexture src, RenderTexture dest) { }
         public virtual void OnPostRender() { }
     }
 }

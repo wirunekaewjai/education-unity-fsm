@@ -57,11 +57,11 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class RenderImage : FsmEvent
+    public class RenderImage : FsmEvent<RenderTexture, RenderTexture>
     {
-        void OnRenderImage()
+        void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
-            Notify();
+            Notify(src, dest);
         }
     }
 

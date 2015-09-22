@@ -64,4 +64,32 @@ namespace Devdayo
         }
     }
 
+
+    public class FsmEvent<A, B> : MonoBehaviour
+    {
+        protected Action<A, B> subscribers;
+
+        protected void Notify(A a, B b)
+        {
+            if (null != subscribers)
+                subscribers(a, b);
+        }
+
+        public static void Subscribe<T>(GameObject target, Action<A, B> action) where T : FsmEvent<A, B>
+        {
+            var c = target.GetComponent<T>();
+
+            if (null == c)
+                c = target.AddComponent<T>();
+
+            c.subscribers += action;
+        }
+
+        public static void Unsubscribe<T>(GameObject target, Action<A, B> action) where T : FsmEvent<A, B>
+        {
+            var c = target.GetComponent<T>();
+
+            c.subscribers -= action;
+        }
+    }
 }

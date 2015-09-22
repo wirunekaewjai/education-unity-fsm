@@ -70,6 +70,14 @@ namespace Devdayo
         {
             FsmEvent<A>.Subscribe<T>(observable, a);
         }
+        protected void Subscribe<T, A, B>(Action<A, B> a) where T : FsmEvent<A, B>
+        {
+            FsmEvent<A, B>.Subscribe<T>(gameObject, a);
+        }
+        protected void Subscribe<T, A, B>(Action<A, B> a, GameObject observable) where T : FsmEvent<A, B>
+        {
+            FsmEvent<A, B>.Subscribe<T>(observable, a);
+        }
 
         // Unsubscribe helper
         protected void Unsubscribe<T>(Action a) where T : FsmEvent
@@ -87,6 +95,14 @@ namespace Devdayo
         protected void Unsubscribe<T, A>(Action<A> a, GameObject observable) where T : FsmEvent<A>
         {
             FsmEvent<A>.Unsubscribe<T>(observable, a);
+        }
+        protected void Unsubscribe<T, A, B>(Action<A, B> a) where T : FsmEvent<A, B>
+        {
+            FsmEvent<A, B>.Unsubscribe<T>(gameObject, a);
+        }
+        protected void Unsubscribe<T, A, B>(Action<A, B> a, GameObject observable) where T : FsmEvent<A, B>
+        {
+            FsmEvent<A, B>.Unsubscribe<T>(observable, a);
         }
 
         // Override it to custom your own logic while instance creating.
