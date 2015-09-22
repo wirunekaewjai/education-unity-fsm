@@ -26,27 +26,32 @@ namespace Devdayo
             // Return to Fsm
             return t;
         }
-		
-		// Create Child FsmState Instance and Setup Fsm Property
-		// This method should called by Fsm or Sub-class of Fsm
-		public static FsmState Create(Fsm fsm, Type type)
-		{
-			// Create Instance by Type
-			FsmState f = Activator.CreateInstance(type) as FsmState;
-			
-			// Set Target Fsm
-			f.fsm = fsm;
 
-			// Call sub-class custom logic while instnace creating.
-			f.OnCreate(fsm);
-			
-			// Return to Fsm
-			return f;
-		}
+        // Create Child FsmState Instance and Setup Fsm Property
+        // This method should called by Fsm or Sub-class of Fsm
+        public static FsmState Create(Fsm fsm, Type type)
+        {
+            // Create Instance by Type
+            FsmState t = Activator.CreateInstance(type) as FsmState;
+
+            // Set Target Fsm
+            t.fsm = fsm;
+
+            // Call sub-class custom logic while instnace creating.
+            t.OnCreate(fsm);
+
+            // Return to Fsm
+            return t;
+        }
 
         // Instance Properties (Received data from Fsm)
         public Fsm fsm { get; private set; }
         public GameObject gameObject { get { return fsm.gameObject; } }
+        
+        public T GetOwner<T>() where T : MonoBehaviour
+        {
+            return (T)fsm.owner;
+        }
 
         // Override it to custom your own logic while instance creating.
         protected virtual void OnCreate(Fsm fsm) { }
