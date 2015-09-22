@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
-public class DrawGizmos : FsmEvent
+namespace Devdayo
 {
-    void OnDrawGizmos()
+    [DisallowMultipleComponent]
+    public class DrawGizmos : FsmEvent
     {
-        Notify();
+        void OnDrawGizmos()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class DrawGizmosSelected : FsmEvent
-{
-    void OnDrawGizmosSelected()
+    [DisallowMultipleComponent]
+    public class DrawGizmosSelected : FsmEvent
     {
-        Notify();
+        void OnDrawGizmosSelected()
+        {
+            Notify();
+        }
     }
 }

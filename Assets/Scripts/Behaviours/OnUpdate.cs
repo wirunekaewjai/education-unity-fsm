@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
-public class Updater : FsmEvent
+namespace Devdayo
 {
-    void Update()
+    [DisallowMultipleComponent]
+    public class Updater : FsmEvent
     {
-        Notify();
+        void Update()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class LateUpdater : FsmEvent
-{
-    void LateUpdate()
+    [DisallowMultipleComponent]
+    public class LateUpdater : FsmEvent
     {
-        Notify();
+        void LateUpdate()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class FixedUpdater : FsmEvent
-{
-    void Update()
+    [DisallowMultipleComponent]
+    public class FixedUpdater : FsmEvent
     {
-        Notify();
+        void Update()
+        {
+            Notify();
+        }
     }
 }

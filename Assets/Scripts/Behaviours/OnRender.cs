@@ -1,73 +1,76 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
-public class WillRenderObject : FsmEvent
+namespace Devdayo
 {
-    void OnWillRenderObject()
+    [DisallowMultipleComponent]
+    public class WillRenderObject : FsmEvent
     {
-        Notify();
+        void OnWillRenderObject()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class PreCull : FsmEvent
-{
-    void OnPreCull()
+    [DisallowMultipleComponent]
+    public class PreCull : FsmEvent
     {
-        Notify();
+        void OnPreCull()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class BecameVisible : FsmEvent
-{
-    void OnBecameVisible()
+    [DisallowMultipleComponent]
+    public class BecameVisible : FsmEvent
     {
-        Notify();
+        void OnBecameVisible()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class BecameInvisible : FsmEvent
-{
-    void OnBecameInvisible()
+    [DisallowMultipleComponent]
+    public class BecameInvisible : FsmEvent
     {
-        Notify();
+        void OnBecameInvisible()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class PreRender : FsmEvent
-{
-    void OnPreRender()
+    [DisallowMultipleComponent]
+    public class PreRender : FsmEvent
     {
-        Notify();
+        void OnPreRender()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class RenderObject : FsmEvent
-{
-    void OnRenderObject()
+    [DisallowMultipleComponent]
+    public class RenderObject : FsmEvent
     {
-        Notify();
+        void OnRenderObject()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class RenderImage : FsmEvent
-{
-    void OnRenderImage()
+    [DisallowMultipleComponent]
+    public class RenderImage : FsmEvent
     {
-        Notify();
+        void OnRenderImage()
+        {
+            Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class PostRender : FsmEvent
-{
-    void OnPostRender()
+    [DisallowMultipleComponent]
+    public class PostRender : FsmEvent
     {
-        Notify();
+        void OnPostRender()
+        {
+            Notify();
+        }
     }
 }

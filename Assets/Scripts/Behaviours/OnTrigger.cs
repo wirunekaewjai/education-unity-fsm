@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
-public class TriggerEnter : FsmEvent<Collider>
+namespace Devdayo
 {
-    void OnTriggerEnter(Collider other)
+    [DisallowMultipleComponent]
+    public class TriggerEnter : FsmEvent<Collider>
     {
-        Notify(other);
+        void OnTriggerEnter(Collider other)
+        {
+            Notify(other);
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class TriggerStay : FsmEvent<Collider>
-{
-    void OnTriggerStay(Collider other)
+    [DisallowMultipleComponent]
+    public class TriggerStay : FsmEvent<Collider>
     {
-        Notify(other);
+        void OnTriggerStay(Collider other)
+        {
+            Notify(other);
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class TriggerExit : FsmEvent<Collider>
-{
-    void OnTriggerExit(Collider other)
+    [DisallowMultipleComponent]
+    public class TriggerExit : FsmEvent<Collider>
     {
-        Notify(other);
+        void OnTriggerExit(Collider other)
+        {
+            Notify(other);
+        }
     }
 }

@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
-public class Resumer : FsmEvent
+namespace Devdayo
 {
-    void OnApplicationPause(bool status)
+    [DisallowMultipleComponent]
+    public class Resumer : FsmEvent
     {
-        if (false == status)
-            Notify();
+        void OnApplicationPause(bool status)
+        {
+            if (false == status)
+                Notify();
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class Pauser : FsmEvent
-{
-    void OnApplicationPause(bool status)
+    [DisallowMultipleComponent]
+    public class Pauser : FsmEvent
     {
-        if(true == status)
-            Notify();
+        void OnApplicationPause(bool status)
+        {
+            if (true == status)
+                Notify();
+        }
     }
+
 }

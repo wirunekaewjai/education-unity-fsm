@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
-public class Reseter : FsmEvent
+namespace Devdayo
 {
-    void Reset()
+    [DisallowMultipleComponent]
+    public class Reseter : FsmEvent
     {
-        Notify();
+        void Reset()
+        {
+            Notify();
+        }
     }
 }

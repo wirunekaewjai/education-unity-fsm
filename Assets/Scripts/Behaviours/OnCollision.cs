@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
 
-[DisallowMultipleComponent]
-public class CollisionEnter : FsmEvent<Collision>
+namespace Devdayo
 {
-    void OnCollisionEnter(Collision other)
+    [DisallowMultipleComponent]
+    public class CollisionEnter : FsmEvent<Collision>
     {
-        Notify(other);
+        void OnCollisionEnter(Collision other)
+        {
+            Notify(other);
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class CollisionStay : FsmEvent<Collision>
-{
-    void OnCollisionStay(Collision other)
+    [DisallowMultipleComponent]
+    public class CollisionStay : FsmEvent<Collision>
     {
-        Notify(other);
+        void OnCollisionStay(Collision other)
+        {
+            Notify(other);
+        }
     }
-}
 
-[DisallowMultipleComponent]
-public class CollisionExit : FsmEvent<Collision>
-{
-    void OnCollisionExit(Collision other)
+    [DisallowMultipleComponent]
+    public class CollisionExit : FsmEvent<Collision>
     {
-        Notify(other);
+        void OnCollisionExit(Collision other)
+        {
+            Notify(other);
+        }
     }
 }
