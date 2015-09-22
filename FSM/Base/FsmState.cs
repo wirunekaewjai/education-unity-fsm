@@ -53,6 +53,42 @@ namespace Devdayo
             return (T)fsm.owner;
         }
 
+        // Subscribe helper
+        protected void Subscribe<T>(Action a) where T : FsmEvent
+        {
+            FsmEvent.Subscribe<T>(gameObject, a);
+        }
+        protected void Subscribe<T>(Action a, GameObject observable) where T : FsmEvent
+        {
+            FsmEvent.Subscribe<T>(observable, a);
+        }
+        protected void Subscribe<T, A>(Action<A> a) where T : FsmEvent<A>
+        {
+            FsmEvent<A>.Subscribe<T>(gameObject, a);
+        }
+        protected void Subscribe<T, A>(Action<A> a, GameObject observable) where T : FsmEvent<A>
+        {
+            FsmEvent<A>.Subscribe<T>(observable, a);
+        }
+
+        // Unsubscribe helper
+        protected void Unsubscribe<T>(Action a) where T : FsmEvent
+        {
+            FsmEvent.Unsubscribe<T>(gameObject, a);
+        }
+        protected void Unsubscribe<T>(Action a, GameObject observable) where T : FsmEvent
+        {
+            FsmEvent.Unsubscribe<T>(observable, a);
+        }
+        protected void Unsubscribe<T, A>(Action<A> a) where T : FsmEvent<A>
+        {
+            FsmEvent<A>.Unsubscribe<T>(gameObject, a);
+        }
+        protected void Unsubscribe<T, A>(Action<A> a, GameObject observable) where T : FsmEvent<A>
+        {
+            FsmEvent<A>.Unsubscribe<T>(observable, a);
+        }
+
         // Override it to custom your own logic while instance creating.
         protected virtual void OnCreate(Fsm fsm) { }
 
