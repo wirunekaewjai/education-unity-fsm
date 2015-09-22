@@ -109,17 +109,17 @@ namespace Devdayo
             Subscribe<Reseter>(Event.OnReset, OnReset);
 
             // On Application
-            Subscribe<Resumer>(Event.OnReset, OnResume);
-            Subscribe<Pauser>(Event.OnReset, OnPause);
+            Subscribe<Resumer>(Event.OnResume, OnResume);
+            Subscribe<Pauser>(Event.OnPause, OnPause);
 
             // On Update
-            Subscribe<Updater>(Event.OnReset, OnUpdate);
-            Subscribe<FixedUpdater>(Event.OnReset, OnFixedUpdate);
-            Subscribe<LateUpdater>(Event.OnReset, OnLateUpdate);
+            Subscribe<Updater>(Event.OnUpdate, OnUpdate);
+            Subscribe<FixedUpdater>(Event.OnFixedUpdate, OnFixedUpdate);
+            Subscribe<LateUpdater>(Event.OnLateUpdate, OnLateUpdate);
 
             // On Draw
-            Subscribe<DrawGizmos>(Event.OnReset, OnDrawGizmos);
-            Subscribe<DrawGizmosSelected>(Event.OnReset, OnDrawGizmosSelected);
+            Subscribe<DrawGizmos>(Event.OnDrawGizmos, OnDrawGizmos);
+            Subscribe<DrawGizmosSelected>(Event.OnDrawGizmosSelected, OnDrawGizmosSelected);
             
             // On Collision
             Subscribe<CollisionEnter, Collision>(Event.OnCollisionEnter, OnCollisionEnter);
@@ -162,17 +162,17 @@ namespace Devdayo
             Unsubscribe<Reseter>(Event.OnReset, OnReset);
 
             // On Application
-            Unsubscribe<Resumer>(Event.OnReset, OnResume);
-            Unsubscribe<Pauser>(Event.OnReset, OnPause);
+            Unsubscribe<Resumer>(Event.OnResume, OnResume);
+            Unsubscribe<Pauser>(Event.OnPause, OnPause);
 
             // On Update
-            Unsubscribe<Updater>(Event.OnReset, OnUpdate);
-            Unsubscribe<FixedUpdater>(Event.OnReset, OnFixedUpdate);
-            Unsubscribe<LateUpdater>(Event.OnReset, OnLateUpdate);
+            Unsubscribe<Updater>(Event.OnUpdate, OnUpdate);
+            Unsubscribe<FixedUpdater>(Event.OnFixedUpdate, OnFixedUpdate);
+            Unsubscribe<LateUpdater>(Event.OnLateUpdate, OnLateUpdate);
 
             // On Draw
-            Unsubscribe<DrawGizmos>(Event.OnReset, OnDrawGizmos);
-            Unsubscribe<DrawGizmosSelected>(Event.OnReset, OnDrawGizmosSelected);
+            Unsubscribe<DrawGizmos>(Event.OnDrawGizmos, OnDrawGizmos);
+            Unsubscribe<DrawGizmosSelected>(Event.OnDrawGizmosSelected, OnDrawGizmosSelected);
 
             // On Collision
             Unsubscribe<CollisionEnter, Collision>(Event.OnCollisionEnter, OnCollisionEnter);
@@ -225,12 +225,18 @@ namespace Devdayo
 
         protected void Unsubscribe<T>(Event e, Action a) where T : FsmEvent
         {
+            if (!events.Contains(e))
+                return;
+
             GameObject obs = GetObservable(e);
             FsmEvent.Unsubscribe<T>(obs, a);
         }
 
         protected void Unsubscribe<T, A>(Event e, Action<A> a) where T : FsmEvent<A>
         {
+            if (!events.Contains(e))
+                return;
+
             GameObject obs = GetObservable(e);
             FsmEvent<A>.Unsubscribe<T>(obs, a);
         }
