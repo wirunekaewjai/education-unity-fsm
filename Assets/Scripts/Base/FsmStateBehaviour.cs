@@ -232,17 +232,17 @@ namespace Devdayo
             if (events.Contains(Event.OnTriggerEnter))
                 FsmEvent<Collider>.Unsubscribe<TriggerEnter>(GetOwner(Event.OnTriggerEnter), OnTriggerEnter);
             if (events.Contains(Event.OnTriggerStay))
-                FsmEvent<Collider>.Unsubscribe<TriggerEnter>(GetOwner(Event.OnTriggerStay), OnTriggerStay);
+                FsmEvent<Collider>.Unsubscribe<TriggerStay>(GetOwner(Event.OnTriggerStay), OnTriggerStay);
             if (events.Contains(Event.OnTriggerExit))
-                FsmEvent<Collider>.Unsubscribe<TriggerEnter>(GetOwner(Event.OnTriggerExit), OnTriggerExit);
+                FsmEvent<Collider>.Unsubscribe<TriggerExit>(GetOwner(Event.OnTriggerExit), OnTriggerExit);
 
             // On Trigger 2D
             if (events.Contains(Event.OnTriggerEnter2D))
                 FsmEvent<Collider2D>.Unsubscribe<TriggerEnter2D>(GetOwner(Event.OnTriggerEnter2D), OnTriggerEnter2D);
             if (events.Contains(Event.OnTriggerStay2D))
-                FsmEvent<Collider2D>.Unsubscribe<TriggerEnter2D>(GetOwner(Event.OnTriggerStay2D), OnTriggerStay2D);
+                FsmEvent<Collider2D>.Unsubscribe<TriggerStay2D>(GetOwner(Event.OnTriggerStay2D), OnTriggerStay2D);
             if (events.Contains(Event.OnTriggerExit2D))
-                FsmEvent<Collider2D>.Unsubscribe<TriggerEnter2D>(GetOwner(Event.OnTriggerExit2D), OnTriggerExit2D);
+                FsmEvent<Collider2D>.Unsubscribe<TriggerExit2D>(GetOwner(Event.OnTriggerExit2D), OnTriggerExit2D);
 
             // On Render
             if (events.Contains(Event.OnWillRenderObject))
