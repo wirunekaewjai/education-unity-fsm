@@ -13,10 +13,10 @@ namespace Devdayo
         // My queues.
         private readonly Queue<Action> queues = new Queue<Action>();
 
-        // Update..every frame
-        private void Update()
+        // Update routine.
+        private void FixedUpdate()
         {
-            // We can't do all queue in one frame. 
+            // We can't do all queue in one time. 
             for (int i = 0; i < Limit && queues.Count > 0; ++i)
             {
                 // Looking for queue.
@@ -26,7 +26,7 @@ namespace Devdayo
                 action();
             }
 
-            // Get some rest and wating for a new frame.
+            // Get some rest and wating for a new called.
         }
         
         private void OnDestroy()
