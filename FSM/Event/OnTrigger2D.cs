@@ -5,7 +5,7 @@ namespace Devdayo
     [DisallowMultipleComponent]
     public class TriggerEnter2D : FsmEvent<Collider2D>
     {
-        void OnTrigger2DEnter(Collider2D other)
+        void OnTriggerEnter2D(Collider2D other)
         {
             Notify(other);
         }
@@ -14,7 +14,7 @@ namespace Devdayo
     [DisallowMultipleComponent]
     public class TriggerStay2D : FsmEvent<Collider2D>
     {
-        void OnTrigger2DStay(Collider2D other)
+        void OnTriggerStay2D(Collider2D other)
         {
             Notify(other);
         }
@@ -23,7 +23,7 @@ namespace Devdayo
     [DisallowMultipleComponent]
     public class TriggerExit2D : FsmEvent<Collider2D>
     {
-        void OnTrigger2DExit(Collider2D other)
+        void OnTriggerExit2D(Collider2D other)
         {
             Notify(other);
         }
