@@ -61,12 +61,12 @@ namespace Devdayo
         // Called from StartCoroutine.
         private System.Collections.IEnumerator OnChangeState<T>() where T : FsmState
         {
-            // Waiting. . .
-            yield return new WaitForEndOfFrame();
-
             // true : when change state in second time.
             if (null != currentState)
             {
+                // Waiting. . .
+                yield return new WaitForEndOfFrame();
+
                 // Should Unsubscribe events before exit this state.
                 currentState.OnUnsubscribe();
 
@@ -80,6 +80,8 @@ namespace Devdayo
             // true : if you not ever travelling to this state.
             if (!states.ContainsKey(type))
             {
+                yield return new WaitForEndOfFrame();
+
                 // Create state instance by Type and pass "this" as argument.
                 states[type] = FsmState.Create<T>(this);
             }
