@@ -23,7 +23,7 @@ namespace Devdayo
     [DisallowMultipleComponent]
     public class FixedUpdater : FsmEvent
     {
-        void Update()
+        void FixedUpdate()
         {
             Notify();
         }

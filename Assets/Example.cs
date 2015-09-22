@@ -38,7 +38,7 @@ public class StateOne : FsmState
     {
         Debug.Log("One: Exit");
     }
-
+    
     public void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("Collision Enter 2D: " + other.gameObject.name);
