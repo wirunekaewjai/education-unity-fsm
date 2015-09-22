@@ -105,8 +105,6 @@ namespace Devdayo
             // Call FsmState.OnSubscribe
             base.OnSubscribe();
 
-            GameObject g = gameObject;
-
             // On Reset
             if (events.Contains(Event.OnReset))
                 FsmEvent.Subscribe<Reseter>(GetOwner(Event.OnReset), OnReset);
