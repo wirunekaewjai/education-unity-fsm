@@ -26,6 +26,23 @@ namespace Devdayo
             // Return to Fsm
             return t;
         }
+		
+		// Create Child FsmState Instance and Setup Fsm Property
+		// This method should called by Fsm or Sub-class of Fsm
+		public static FsmState Create(Fsm fsm, Type type)
+		{
+			// Create Instance by Type
+			FsmState f = Activator.CreateInstance(type) as FsmState;
+			
+			// Set Target Fsm
+			f.fsm = fsm;
+
+			// Call sub-class custom logic while instnace creating.
+			f.OnCreate(fsm);
+			
+			// Return to Fsm
+			return f;
+		}
 
         // Instance Properties (Received data from Fsm)
         public Fsm fsm { get; private set; }
