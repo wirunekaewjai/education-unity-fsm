@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Devdayo
 {
     [DisallowMultipleComponent]
-    public class Updater : FsmEvent
+    public class Updater : FsmObservable
     {
         void Update()
         {
@@ -12,7 +12,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class LateUpdater : FsmEvent
+    public class LateUpdater : FsmObservable
     {
         void LateUpdate()
         {
@@ -21,7 +21,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class FixedUpdater : FsmEvent
+    public class FixedUpdater : FsmObservable
     {
         void FixedUpdate()
         {

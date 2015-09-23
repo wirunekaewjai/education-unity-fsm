@@ -58,10 +58,10 @@ namespace Devdayo
         private readonly List<Event> events = new List<Event>();
 
         // Override to custom logic while instance creating.
-        protected override void OnCreate(Fsm fsm)
+        protected override void OnCreate()
         {
             // Call super-class OnCreate.
-            base.OnCreate(fsm);
+            base.OnCreate();
 
             // Get Type from this class
             Type type = GetType();
@@ -100,7 +100,7 @@ namespace Devdayo
         }
 
         // Override from FsmState.cs
-        public override void OnSubscribe()
+        protected override void OnSubscribe()
         {
             // Call FsmState.OnSubscribe
             base.OnSubscribe();
@@ -153,7 +153,7 @@ namespace Devdayo
         }
 
         // Override from FsmState.cs
-        public override void OnUnsubscribe()
+		protected override void OnUnsubscribe()
         {
             // Call FsmState.OnSubscribe
             base.OnUnsubscribe();
@@ -205,54 +205,54 @@ namespace Devdayo
             Unsubscribe<PostRender>(Event.OnPostRender, OnPostRender);
         }
 
-        protected void Subscribe<T>(Event e, Action a) where T : FsmEvent
+        protected void Subscribe<T>(Event e, Action a) where T : FsmObservable
         {
             if (!events.Contains(e))
                 return;
 
             GameObject obs = GetObservable(e);
-            FsmEvent.Subscribe<T>(obs, a);
+            FsmObservable.Subscribe<T>(obs, a);
         }
-        protected void Subscribe<T, A>(Event e, Action<A> a) where T : FsmEvent<A>
+        protected void Subscribe<T, A>(Event e, Action<A> a) where T : FsmObservable<A>
         {
             if (!events.Contains(e))
                 return;
 
             GameObject obs = GetObservable(e);
-            FsmEvent<A>.Subscribe<T>(obs, a);
+            FsmObservable<A>.Subscribe<T>(obs, a);
         }
-        protected void Subscribe<T, A, B>(Event e, Action<A, B> a) where T : FsmEvent<A, B>
+        protected void Subscribe<T, A, B>(Event e, Action<A, B> a) where T : FsmObservable<A, B>
         {
             if (!events.Contains(e))
                 return;
 
             GameObject obs = GetObservable(e);
-            FsmEvent<A, B>.Subscribe<T>(obs, a);
+            FsmObservable<A, B>.Subscribe<T>(obs, a);
         }
 
-        protected void Unsubscribe<T>(Event e, Action a) where T : FsmEvent
+        protected void Unsubscribe<T>(Event e, Action a) where T : FsmObservable
         {
             if (!events.Contains(e))
                 return;
 
             GameObject obs = GetObservable(e);
-            FsmEvent.Unsubscribe<T>(obs, a);
+            FsmObservable.Unsubscribe<T>(obs, a);
         }
-        protected void Unsubscribe<T, A>(Event e, Action<A> a) where T : FsmEvent<A>
+        protected void Unsubscribe<T, A>(Event e, Action<A> a) where T : FsmObservable<A>
         {
             if (!events.Contains(e))
                 return;
 
             GameObject obs = GetObservable(e);
-            FsmEvent<A>.Unsubscribe<T>(obs, a);
+            FsmObservable<A>.Unsubscribe<T>(obs, a);
         }
-        protected void Unsubscribe<T, A, B>(Event e, Action<A, B> a) where T : FsmEvent<A, B>
+        protected void Unsubscribe<T, A, B>(Event e, Action<A, B> a) where T : FsmObservable<A, B>
         {
             if (!events.Contains(e))
                 return;
 
             GameObject obs = GetObservable(e);
-            FsmEvent<A, B>.Unsubscribe<T>(obs, a);
+            FsmObservable<A, B>.Unsubscribe<T>(obs, a);
         }
 
         // Virtual Sections.

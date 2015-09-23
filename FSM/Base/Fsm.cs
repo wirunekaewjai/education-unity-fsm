@@ -17,14 +17,20 @@ namespace Devdayo
         private readonly Dictionary<Type, FsmState> states = new Dictionary<Type, FsmState>();
 
         // State change locker
-        private Type currentType;
+		private Type currentType;
+		
+		// Keep owner of Fsm.
+		private MonoBehaviour owner;
 
         // Keep current state.
         public FsmState currentState { get; private set; }
 
-        // Keep owner of Fsm.
-        public MonoBehaviour owner { get; private set; }
-        public GameObject gameObject { get { return owner.gameObject; } }
+		// Get Owner by your type
+		public T GetOwner<T>() where T : MonoBehaviour
+		{
+			// Casting type and return it.
+			return (T) owner;
+		}
 
         // Construct
         public Fsm(MonoBehaviour owner)
@@ -38,11 +44,8 @@ namespace Devdayo
             // false : if you never called "Go<T>"
             if (null != currentState)
             {
-                // Should Unsubscribe events before exit this state.
-                currentState.OnUnsubscribe();
-
                 // Exit this state
-                currentState.OnExit();
+                currentState.Exit();
             }
 
             // Clear !!!
@@ -67,11 +70,8 @@ namespace Devdayo
             // true : when change state in second time.
             if (null != currentState)
             {
-                // Should Unsubscribe events before exit this state.
-                currentState.OnUnsubscribe();
-
                 // Exit this state
-                currentState.OnExit();
+                currentState.Exit();
             }
 
             // Start Change state process.
@@ -84,21 +84,26 @@ namespace Devdayo
             // true : if you not ever travelling to this state.
             if (!states.ContainsKey(currentType))
             {
+				// Create Instance by Type
+				currentState = Activator.CreateInstance(currentType) as FsmState;
+
+				// Call Creation Logic
+				currentState.Create(this);
+
                 // Create state instance by Type and pass "this" as argument.
-                states[currentType] = FsmState.Create(this, currentType);
+				states[currentType] = currentState;
             }
-            
-            // Get state instance
-            currentState = states[currentType];
+			else
+			{
+				// Get state instance
+				currentState = states[currentType];
+			}
 
             // Unlocked
             currentType = null;
 
-            // Subscribe Events
-            currentState.OnSubscribe();
-
             // Your State is Begin !!!
-            currentState.OnEnter();
+            currentState.Enter();
         }
     }
 

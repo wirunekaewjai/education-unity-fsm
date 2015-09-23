@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Devdayo
 {
     [DisallowMultipleComponent]
-    public class Reseter : FsmEvent
+    public class Reseter : FsmObservable
     {
         void Reset()
         {

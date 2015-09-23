@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System;
 
 namespace Devdayo
 {
     // Base Event Class
-    public class FsmEvent : MonoBehaviour
+    public class FsmObservable : MonoBehaviour
     {
         protected Action subscribers;
 
@@ -15,7 +16,7 @@ namespace Devdayo
         }
 
         // Subscribe by Type
-        public static void Subscribe<T>(GameObject target, Action action) where T : FsmEvent
+        public static void Subscribe<T>(GameObject target, Action action) where T : FsmObservable
         {
             var c = target.GetComponent<T>();
 
@@ -27,7 +28,7 @@ namespace Devdayo
         }
 
         // Unsubscribe by Type
-        public static void Unsubscribe<T>(GameObject target, Action action) where T : FsmEvent
+        public static void Unsubscribe<T>(GameObject target, Action action) where T : FsmObservable
         {
             var c = target.GetComponent<T>();
 
@@ -36,36 +37,36 @@ namespace Devdayo
         }
     }
 
-    public class FsmEvent<C> : MonoBehaviour
+	public class FsmObservable<A> : MonoBehaviour
     {
-        protected Action<C> subscribers;
+        protected Action<A> subscribers;
 
-        protected void Notify(C c)
+        protected void Notify(A a)
         {
             if (null != subscribers)
-                subscribers(c);
+                subscribers(a);
         }
 
-        public static void Subscribe<T>(GameObject target, Action<C> action) where T : FsmEvent<C>
+        public static void Subscribe<T>(GameObject target, Action<A> action) where T : FsmObservable<A>
         {
-            var c = target.GetComponent<T>();
+            var a = target.GetComponent<T>();
 
-            if (null == c)
-                c = target.AddComponent<T>();
+            if (null == a)
+                a = target.AddComponent<T>();
 
-            c.subscribers += action;
+            a.subscribers += action;
         }
 
-        public static void Unsubscribe<T>(GameObject target, Action<C> action) where T : FsmEvent<C>
+        public static void Unsubscribe<T>(GameObject target, Action<A> action) where T : FsmObservable<A>
         {
-            var c = target.GetComponent<T>();
+            var a = target.GetComponent<T>();
 
-            c.subscribers -= action;
+            a.subscribers -= action;
         }
     }
 
 
-    public class FsmEvent<A, B> : MonoBehaviour
+    public class FsmObservable<A, B> : MonoBehaviour
     {
         protected Action<A, B> subscribers;
 
@@ -75,7 +76,7 @@ namespace Devdayo
                 subscribers(a, b);
         }
 
-        public static void Subscribe<T>(GameObject target, Action<A, B> action) where T : FsmEvent<A, B>
+        public static void Subscribe<T>(GameObject target, Action<A, B> action) where T : FsmObservable<A, B>
         {
             var c = target.GetComponent<T>();
 
@@ -85,7 +86,7 @@ namespace Devdayo
             c.subscribers += action;
         }
 
-        public static void Unsubscribe<T>(GameObject target, Action<A, B> action) where T : FsmEvent<A, B>
+        public static void Unsubscribe<T>(GameObject target, Action<A, B> action) where T : FsmObservable<A, B>
         {
             var c = target.GetComponent<T>();
 

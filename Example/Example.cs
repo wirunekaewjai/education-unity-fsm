@@ -11,31 +11,38 @@ public class Example : MonoBehaviour
         fsm = new Fsm(this);
         fsm.Go<StateOne>();
     }
+
+	void OnDestroy()
+	{
+		fsm.Destroy();
+	}
 }
 
 public class StateOne : FsmState
 {
-    public override void OnSubscribe()
-    {
-        base.OnSubscribe();
-        Subscribe<Updater>(OnUpdate);
-    }
+    protected override void OnSubscribe ()
+	{
+		base.OnSubscribe ();
+		Subscribe<Updater>(gameObject, OnUpdate);
+	}
 
-    public override void OnUnsubscribe()
+    protected override void OnUnsubscribe()
     {
         base.OnUnsubscribe();
-        Unsubscribe<Updater>(OnUpdate);
+        Unsubscribe<Updater>(gameObject, OnUpdate);
     }
 
-    public override void OnEnter()
-    {
-        Debug.Log("State One: Enter");
-    }
+    protected override void OnEnter ()
+	{
+		base.OnEnter ();
+		Debug.Log("State One: Enter");
+	}
 
-    public override void OnExit()
-    {
-        Debug.Log("State One: Exit");
-    }
+    protected override void OnExit ()
+	{
+		base.OnExit ();
+		Debug.Log("State One: Exit");
+	}
 
     public void OnUpdate()
     {
@@ -48,13 +55,15 @@ public class StateOne : FsmState
 
 public class StateTwo : FsmStateBehaviour
 {
-    public override void OnEnter()
-    {
+	protected override void OnEnter ()
+	{
+		base.OnEnter ();
         Debug.Log("State Two: Enter");
     }
 
-    public override void OnExit()
-    {
+	protected override void OnExit ()
+	{
+		base.OnExit ();
         Debug.Log("State Two: Exit");
     }
 

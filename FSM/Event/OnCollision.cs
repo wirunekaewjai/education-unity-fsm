@@ -3,7 +3,7 @@
 namespace Devdayo
 {
     [DisallowMultipleComponent]
-    public class CollisionEnter : FsmEvent<Collision>
+    public class CollisionEnter : FsmObservable<Collision>
     {
         void OnCollisionEnter(Collision other)
         {
@@ -12,7 +12,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class CollisionStay : FsmEvent<Collision>
+    public class CollisionStay : FsmObservable<Collision>
     {
         void OnCollisionStay(Collision other)
         {
@@ -21,7 +21,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class CollisionExit : FsmEvent<Collision>
+    public class CollisionExit : FsmObservable<Collision>
     {
         void OnCollisionExit(Collision other)
         {

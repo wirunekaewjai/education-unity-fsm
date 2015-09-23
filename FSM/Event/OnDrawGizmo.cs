@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Devdayo
 {
     [DisallowMultipleComponent]
-    public class DrawGizmos : FsmEvent
+    public class DrawGizmos : FsmObservable
     {
         void OnDrawGizmos()
         {
@@ -12,7 +12,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class DrawGizmosSelected : FsmEvent
+    public class DrawGizmosSelected : FsmObservable
     {
         void OnDrawGizmosSelected()
         {

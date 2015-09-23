@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Devdayo
 {
     [DisallowMultipleComponent]
-    public class WillRenderObject : FsmEvent
+    public class WillRenderObject : FsmObservable
     {
         void OnWillRenderObject()
         {
@@ -12,7 +12,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class PreCull : FsmEvent
+    public class PreCull : FsmObservable
     {
         void OnPreCull()
         {
@@ -21,7 +21,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class BecameVisible : FsmEvent
+    public class BecameVisible : FsmObservable
     {
         void OnBecameVisible()
         {
@@ -30,7 +30,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class BecameInvisible : FsmEvent
+    public class BecameInvisible : FsmObservable
     {
         void OnBecameInvisible()
         {
@@ -39,7 +39,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class PreRender : FsmEvent
+    public class PreRender : FsmObservable
     {
         void OnPreRender()
         {
@@ -48,7 +48,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class RenderObject : FsmEvent
+    public class RenderObject : FsmObservable
     {
         void OnRenderObject()
         {
@@ -57,7 +57,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class RenderImage : FsmEvent<RenderTexture, RenderTexture>
+    public class RenderImage : FsmObservable<RenderTexture, RenderTexture>
     {
         void OnRenderImage(RenderTexture src, RenderTexture dest)
         {
@@ -66,7 +66,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class PostRender : FsmEvent
+    public class PostRender : FsmObservable
     {
         void OnPostRender()
         {

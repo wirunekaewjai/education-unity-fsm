@@ -5,7 +5,7 @@ using System;
 namespace Devdayo
 {
     // I'm a hard-worker
-    public class FsmTask : MonoBehaviour
+    internal class FsmTask : MonoBehaviour
     {
         // Limit of iteration in one frame.
         private const int Limit = 100;

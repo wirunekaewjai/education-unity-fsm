@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Devdayo
 {
     [DisallowMultipleComponent]
-    public class Resumer : FsmEvent
+    public class Resumer : FsmObservable
     {
         void OnApplicationPause(bool status)
         {
@@ -13,7 +13,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class Pauser : FsmEvent
+    public class Pauser : FsmObservable
     {
         void OnApplicationPause(bool status)
         {

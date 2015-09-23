@@ -3,7 +3,7 @@
 namespace Devdayo
 {
     [DisallowMultipleComponent]
-    public class TriggerEnter : FsmEvent<Collider>
+    public class TriggerEnter : FsmObservable<Collider>
     {
         void OnTriggerEnter(Collider other)
         {
@@ -12,7 +12,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class TriggerStay : FsmEvent<Collider>
+    public class TriggerStay : FsmObservable<Collider>
     {
         void OnTriggerStay(Collider other)
         {
@@ -21,7 +21,7 @@ namespace Devdayo
     }
 
     [DisallowMultipleComponent]
-    public class TriggerExit : FsmEvent<Collider>
+    public class TriggerExit : FsmObservable<Collider>
     {
         void OnTriggerExit(Collider other)
         {
