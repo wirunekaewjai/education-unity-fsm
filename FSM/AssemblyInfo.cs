@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("FSM")]
-[assembly: AssemblyDescription("D.I.Y : FSM Library for Unity")]
+[assembly: AssemblyDescription("Finite State Machine for MonoBehaviour based on Observer Pattern")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("devdayo")]
 [assembly: AssemblyProduct("")]
