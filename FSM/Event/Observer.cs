@@ -30,7 +30,8 @@ namespace Devdayo.FSM.Event
             
         }
         */
-        public virtual void Subscribe(StateEvent e, GameObject target, Method method)
+
+        internal virtual void Subscribe(StateEvent e, GameObject target, Method method)
         {
             
             // Update Events
@@ -214,7 +215,7 @@ namespace Devdayo.FSM.Event
         }
         */
 
-        public virtual void Unsubscribe(StateEvent e, GameObject target, Method method)
+        internal virtual void Unsubscribe(StateEvent e, GameObject target, Method method)
         {
             
             // Update Events

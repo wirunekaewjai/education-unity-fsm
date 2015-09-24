@@ -14,8 +14,12 @@ namespace Devdayo.FSM
             public float count;
         }
 
+        private const int ACTION_LIMIT = 50;
+        private const int TEMP_LIMIT = 100;
+
         private readonly List<Data> datas = new List<Data>();
-        
+        private readonly List<Data> temps = new List<Data>();
+
         internal Invoker()
         {
 
@@ -25,48 +29,115 @@ namespace Devdayo.FSM
         {
             datas.Clear();
         }
-
-        internal System.Collections.IEnumerator Update()
+        
+        internal void Update()
         {
-            List<Data> deletes = new List<Data>();
+            float deltaTime = Time.deltaTime;
+            int actionCount = 0;
+            for (int i = 0; i < datas.Count;)
+            {
+                Data data = datas[i];
+                if (data.count >= data.delay)
+                {
+                    data.action();
+                    temps.Add(data);
+                    datas.RemoveAt(i);
 
+                    actionCount += 1;
+
+                    if (actionCount > ACTION_LIMIT)
+                    {
+                        break;
+                    }
+
+                    continue;
+                }
+
+                data.count += deltaTime;
+                i++;
+            }
+
+            int excess = temps.Count - TEMP_LIMIT;
+            if (excess > 0)
+            {
+                temps.RemoveRange(TEMP_LIMIT, excess);
+            }
+        }
+        
+        
+        internal System.Collections.IEnumerator RoutineUpdate()
+        {
+            //List<Data> deletes = new List<Data>();
+            float sleepTime = Time.fixedDeltaTime * 5f;
             while (true)
             {
-                float deltaTime = Time.deltaTime;
-                foreach (var data in datas)
+                float deltaTime = sleepTime;
+                int actionCount = 0;
+                for (int i = 0; i < datas.Count;)
                 {
+                    Data data = datas[i];
                     if(data.count >= data.delay)
                     {
                         data.action();
-                        deletes.Add(data);
+
+                        data.action = null;
+                        data.delay = float.MaxValue;
+                        data.count = 0;
+
+                        temps.Add(data);
+                        datas.RemoveAt(i);
+                        
+                        actionCount += 1;
+
+                        if (actionCount > ACTION_LIMIT)
+                        {
+                            break;
+                        }
+                        
+                        continue;
                     }
-                    else
-                    {
-                        data.count += deltaTime;
-                    }
+
+                    data.count += Time.deltaTime;
+                    i++;
                 }
 
-                foreach (var delete in deletes)
+                int excess = temps.Count - TEMP_LIMIT;
+                if(excess > 0)
                 {
-                    datas.Remove(delete);
+                    temps.RemoveRange(TEMP_LIMIT, excess);
                 }
-
-                deletes.Clear();
 
                 yield return new WaitForEndOfFrame();
             }
         }
+        
 
-        public void Invoke(Action action, float delay)
+        public void Invoke(Action action, float delayInSeconds)
         {
-            Data data = new Data();
-            data.action = action;
-            data.delay = delay;
+            if(temps.Count > 0)
+            {
+                Data data = temps[0];
+                data.action = action;
+                data.delay = delayInSeconds;
+                data.count = 0;
+
+                datas.Add(data);
+                temps.RemoveAt(0);
+            }
+            else
+            {
+                Data data = new Data();
+                data.action = action;
+                data.delay = delayInSeconds;
+                data.count = 0;
+
+                datas.Add(data);
+            }
         }
 
-        public static void Schedule(Action action, float delay)
+        public static void Schedule(Action action, float delayInSeconds)
         {
-            Devdayo.FSM.Core.Instance.Invoker.Invoke(action, delay);
+            Devdayo.FSM.Core.Instance.Invoker.Invoke(action, delayInSeconds);
         }
     }
 }

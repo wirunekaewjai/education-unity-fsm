@@ -1,4 +1,6 @@
-﻿// Contain "MonoBehaviour" Class
+﻿using System;
+
+// Contain "MonoBehaviour" Class
 using UnityEngine;
 
 // Contain "Observer" Class
@@ -64,6 +66,60 @@ namespace Devdayo.FSM
         // You can override if you want to create your own logic while enter and exit.
         protected virtual void OnEnter() { }
         protected virtual void OnExit() { }
+        
+        protected void Subscribe(StateEvent e, GameObject target, Action delegateMethod)
+        {
+            string name = delegateMethod.Method.Name;
+            object owner = delegateMethod.Target;
+
+            Method method = new Method(name, owner);
+            Subscribe(e, target, method);
+        }
+
+        protected void Unsubscribe(StateEvent e, GameObject target, Action action)
+        {
+            string name = action.Method.Name;
+            object owner = action.Target;
+
+            Method method = new Method(name, owner);
+            Unsubscribe(e, target, method);
+        }
+
+        protected void Subscribe<I>(StateEvent e, GameObject target, Action<I> action)
+        {
+            string name = action.Method.Name;
+            object owner = action.Target;
+
+            Method method = new Method(name, owner);
+            Subscribe(e, target, method);
+        }
+
+        protected void Unsubscribe<I>(StateEvent e, GameObject target, Action<I> action)
+        {
+            string name = action.Method.Name;
+            object owner = action.Target;
+
+            Method method = new Method(name, owner);
+            Unsubscribe(e, target, method);
+        }
+
+        protected void Subscribe<I, J>(StateEvent e, GameObject target, Action<I, J> action)
+        {
+            string name = action.Method.Name;
+            object owner = action.Target;
+
+            Method method = new Method(name, owner);
+            Subscribe(e, target, method);
+        }
+
+        protected void Unsubscribe<I, J>(StateEvent e, GameObject target, Action<I, J> action)
+        {
+            string name = action.Method.Name;
+            object owner = action.Target;
+
+            Method method = new Method(name, owner);
+            Unsubscribe(e, target, method);
+        }
 
         /*
         public override void Subscribe(StateEvent e, Method method)

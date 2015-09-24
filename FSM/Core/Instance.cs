@@ -30,7 +30,7 @@ namespace Devdayo.FSM.Core
 
             invoker = new Invoker();
 
-            StartCoroutine(invoker.Update());
+            StartCoroutine(invoker.RoutineUpdate());
 
             destroyed = false;
         }
@@ -42,6 +42,7 @@ namespace Devdayo.FSM.Core
 
             // print("Update");
             updater.Update();
+            //invoker.Update();
         }
         
 
