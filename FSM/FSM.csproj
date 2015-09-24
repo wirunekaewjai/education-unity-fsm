@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AADF2931-F6CA-46CF-9EBA-BF49A3B925E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Devdayo.FSM</RootNamespace>
+    <AssemblyName>FSM</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Platform-2D\Assets\Libraries\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>D:\Unity 5.1.2f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\MethodCreator.cs" />
+    <Compile Include="Core\StateChanger.cs" />
+    <Compile Include="Core\Instance.cs" />
+    <Compile Include="Core\StateDestroyer.cs" />
+    <Compile Include="Core\StateUpdater.cs" />
+    <Compile Include="Core\Method.cs" />
+    <Compile Include="Event\Observable.cs" />
+    <Compile Include="Event\Observer.cs" />
+    <Compile Include="Event\OnAnimator.cs" />
+    <Compile Include="Event\OnApp.cs" />
+    <Compile Include="Event\OnCollision.cs" />
+    <Compile Include="Event\OnCollision2D.cs" />
+    <Compile Include="Event\OnDrawGizmos.cs" />
+    <Compile Include="Event\OnRender.cs" />
+    <Compile Include="Event\OnReset.cs" />
+    <Compile Include="Event\OnTransform.cs" />
+    <Compile Include="Event\OnTrigger.cs" />
+    <Compile Include="Event\OnTrigger2D.cs" />
+    <Compile Include="Event\OnUpdater.cs" />
+    <Compile Include="Invoker.cs" />
+    <Compile Include="StateBehaviour.cs" />
+    <Compile Include="StateEvent.cs" />
+    <Compile Include="StateMachine.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\Singleton.cs" />
+    <Compile Include="State.cs" />
+    <Compile Include="Core\StateCreator.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
